@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "League Gothic", sans-serif;
+}
+
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    0deg,
+    hsl(257deg 70% 32%) 0%,
+    hsl(263deg 71% 31%) 11%,
+    hsl(268deg 72% 30%) 22%,
+    hsl(273deg 73% 30%) 33%,
+    hsl(277deg 74% 29%) 44%,
+    hsl(281deg 74% 29%) 56%,
+    hsl(285deg 75% 28%) 67%,
+    hsl(289deg 74% 28%) 78%,
+    hsl(292deg 74% 28%) 89%,
+    hsl(296deg 73% 27%) 100%
+  );
+  background-attachment: fixed;
+  position: relative;
+  min-height: 700px;
+}
+
+.welcome {
+  background: url("images/background.jpg");
+  background-repeat: no-repeat;
+  width: 900px;
+  height: 500px;
+  text-align: center;
+  /* display: none; */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  position: absolute;
+}
+
+.title {
+  color: rgb(243, 33, 173);
+  font-size: 130px;
+  animation: title 0.5s ease-in-out infinite;
+  position: absolute;
+  width: 100%;
+  top: 150px;
+}
+
+.playBtn {
+  font-size: 50px;
+  animation: playBtn 0.5s ease-in-out infinite;
+  background: rgb(101, 24, 224);
+  position: relative;
+  top: 350px;
+  text-shadow: 0px 1px 3px #333;
+}
+
+@keyframes title {
+  0% {
+    font-size: 130px;
+    /* margin-bottom: 0rem; */
+    text-shadow: 0px 4px 5px #000;
+  }
+
+  50% {
+    font-size: 140px;
+    /* margin-bottom: -0.5rem; */
+    text-shadow: 0px 4px 10px #000;
+  }
+  100% {
+    font-size: 130px;
+    /* margin-bottom: 0rem; */
+    text-shadow: 0px 4px 5px #000;
+  }
+}
+
+@keyframes playBtn {
+  0% {
+    color: rgb(179, 216, 17);
+    text-shadow: 0px 1px 3px #333;
+  }
+  50% {
+    color: rgb(208, 255, 1);
+    text-shadow: 0px 1px 7px #333;
+  }
+  100% {
+    color: rgb(179, 216, 17);
+    text-shadow: 0px 1px 3px #333;
+  }
+}
+
+.lives,
+.level,
+.score,
+.highScore {
+  color: rgb(228, 228, 228);
+  font-size: 30px;
+  position: absolute;
+}
+
+.lives,
+.level,
+.score {
+  top: 30px;
+}
+
+.highScore {
+  bottom: 30px;
+}
+
+.score {
+  right: 30px;
+}
+
+.lives {
+  left: 30px;
+}
+
+.canvas {
+  width: 900px;
+  height: 500px;
+  background: rgb(232, 204, 255);
+  box-shadow: 0px 0px 60px #000;
+}
+
+.instructions {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: rgba(255, 0, 234, 0.35);
+}
+
+.instructions > p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
+  color: white;
+  font-size: 20px;
+  font-weight: normal;
+}
