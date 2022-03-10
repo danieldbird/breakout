@@ -106,10 +106,21 @@ body {
 .lives,
 .level,
 .score,
-.highScore {
-  color: rgb(228, 228, 228);
+.highScore,
+.message {
+  color: rgb(245, 245, 245);
   font-size: 30px;
   position: absolute;
+}
+
+.message {
+  opacity: 0;
+  display: hidden;
+}
+
+.message {
+  font-size: 100px;
+  transition: opacity 1s;
 }
 
 .lives,
@@ -133,7 +144,7 @@ body {
 .canvas {
   width: 900px;
   height: 500px;
-  background: rgb(232, 204, 255);
+  background: rgb(43, 19, 65);
   box-shadow: 0px 0px 60px #000;
 }
 

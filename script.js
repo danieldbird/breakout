@@ -5,6 +5,7 @@ const lives = document.querySelector(".lives");
 const level = document.querySelector(".level");
 const score = document.querySelector(".score");
 const highScore = document.querySelector(".highScore");
+const message = document.querySelector(".message");
 
 const width = canvas.getBoundingClientRect().width;
 const height = canvas.getBoundingClientRect().height;
@@ -71,8 +72,8 @@ function playSound(file) {
 
 function checkForWin() {
   if (scoreCounter === totalBricksGenerated) {
-    console.log("YOU WIN, CONGRATULATIONS!");
     levelCounter += 1;
+    showMessage(`LEVEL ${levelCounter}`, 2000);
     gameStarted = false;
     currentVelocity += 1.25;
     if (brickRows < 5) {
@@ -84,9 +85,17 @@ function checkForWin() {
     paddle.speed += 1.25;
     resetBall();
     generateBricks();
-    console.log(totalBricksGenerated);
-    console.log(scoreCounter);
   }
+}
+
+function showMessage(text, time) {
+  message.innerHTML = text;
+  // message.style.display = "block";
+  message.style.opacity = "1";
+  setTimeout(() => {
+    // message.style.display = "block";
+    message.style.opacity = "0";
+  }, time);
 }
 
 function checkForLose() {
@@ -94,22 +103,26 @@ function checkForLose() {
     resetBall();
     livesCounter -= 1;
     gameStarted = false;
+    onWelcomeScreen = false;
     if (livesCounter === 0) {
-      onWelcomeScreen = true;
-      currentVelocity = 5;
-      livesCounter = 3;
-      levelCounter = 1;
-      scoreCounter = 0;
-      totalBricksGenerated = 0;
-      bricks = [];
-      brickRows = 1;
-      brickColumns = 2;
-      paddle.speed = 5;
-      generateBricks();
-      welcomeScreen.style.display = "block";
-      canvas.style.display = "none";
+      showMessage("GAME OVER!", 1000);
+      setTimeout(() => {
+        currentVelocity = 5;
+        livesCounter = 3;
+        levelCounter = 1;
+        scoreCounter = 0;
+        totalBricksGenerated = 0;
+        bricks = [];
+        brickRows = 1;
+        brickColumns = 2;
+        paddle.speed = 5;
+        generateBricks();
+        welcomeScreen.style.display = "block";
+        canvas.style.display = "none";
+        onWelcomeScreen = true;
+      }, 2000);
     } else {
-      console.log("continue");
+      showMessage("MISS!", 500);
     }
   }
 }
@@ -262,7 +275,7 @@ function drawBall() {
   // ctx.shadowOffsetY = 0;
   ctx.shadowColor = "#333";
   ctx.beginPath();
-  ctx.fillStyle = "#333";
+  ctx.fillStyle = "#ccc";
   ctx.arc(ball.posX, ball.posY, ball.size, 0, Math.PI * 2);
   ctx.fill();
   ctx.closePath();
@@ -486,7 +499,7 @@ function handlePressSpace() {
 }
 
 function handleKeyDown(e) {
-  if (!gameStarted && e.code === "Enter") {
+  if (!gameStarted && onWelcomeScreen && e.code === "Enter") {
     handleEnterGame();
   }
   if (!gameStarted && !onWelcomeScreen && e.code === "Space") {
