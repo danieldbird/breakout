@@ -463,6 +463,7 @@ function handlePressEnter() {
   welcomeScreen.style.display = "none";
   canvas.style.display = "block";
   game.state.onWelcomeScreen = false;
+  showMessage(`LEVEL ${game.level}`, 2000);
 }
 
 // handle any key down
