@@ -78,6 +78,8 @@ const brickData = {
     brickLayout.columns,
 };
 
+let audioPlaying = false;
+
 // UTILITIES ---------------------------------------------------------------------------------------
 
 function resetGame() {
@@ -469,7 +471,10 @@ function handlePressEnter() {
   canvas.style.display = "block";
   game.state.onWelcomeScreen = false;
   showMessage(`LEVEL ${game.level}`, 2000);
-  playSound("audio/background.mp3", true);
+  if (!audioPlaying) {
+    playSound("audio/background.mp3", true);
+  }
+  audioPlaying = true;
 }
 
 // handle any key down
