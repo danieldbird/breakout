@@ -97,8 +97,11 @@ function resetGame() {
 }
 
 // play a game sound
-function playSound(file) {
+function playSound(file, loop) {
   let audio = new Audio(file);
+  if (loop) {
+    audio.loop = true;
+  }
   audio.play();
 }
 
@@ -466,6 +469,7 @@ function handlePressEnter() {
   canvas.style.display = "block";
   game.state.onWelcomeScreen = false;
   showMessage(`LEVEL ${game.level}`, 2000);
+  playSound("audio/background.mp3", true);
 }
 
 // handle any key down
@@ -527,6 +531,7 @@ function animate() {
 // START GAME --------------------------------------------------------------------------------------
 function start() {
   requestAnimationFrame(animate);
+
   generateBricks();
   addListeners();
 }
