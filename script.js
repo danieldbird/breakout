@@ -300,6 +300,7 @@ function ballPaddleCollisionDetection() {
 
 function wallCollisionDetection() {
   if (ball.posX <= 0 + game.ball.size || ball.posX >= width - game.ball.size) {
+    playSound("audio/hitWall.mp3");
     if (ball.posX <= 0 + game.ball.size) {
       ball.posX = 0 + game.ball.size;
     }
@@ -309,6 +310,7 @@ function wallCollisionDetection() {
     ball.velX = -ball.velX;
   }
   if (ball.posY < 0 + game.ball.size) {
+    playSound("audio/hitWall.mp3");
     ball.velY = -ball.velY;
   }
 }
