@@ -393,6 +393,7 @@ function brickCollisionDetection() {
 // check for win level
 function checkForWin() {
   if (game.score === brickData.totalBricksGenerated) {
+    playSound("audio/yes.mp3");
     game.level += 1;
     showMessage(`LEVEL ${game.level}`, 2000);
     game.state.started = false;
@@ -412,6 +413,7 @@ function checkForWin() {
 // check if ball is missed by paddle
 function checkForLose() {
   if (ball.posY > height + game.ball.size) {
+    playSound("audio/out.mp3");
     resetBall();
     game.lives -= 1;
     game.state.started = false;
